@@ -25,10 +25,12 @@ app.post("/signin", signin);
 // app.use("/api", protect);
 app.use("/api/note", protect, noteRouter);
 
-mongoose.connect("mongodb://localhost:27017/myapp").then((data) => {
+mongoose.connect(process.env.MONGO_URI).then((data) => {
   console.log("mongo connected");
 });
 
-app.listen(port, () => {
-  console.log(`App listening on http://localhost:${port}/api`);
+app.listen(process.env.PORT, () => {
+  console.log(
+    `App listening on http://${process.env.HOSTNAME}:${process.env.PORT}/api`
+  );
 });
