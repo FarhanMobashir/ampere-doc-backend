@@ -19,6 +19,7 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
+app.get("/", (req, res) => res.send("Hello from server"));
 app.post("/signup", signup);
 app.post("/signin", signin);
 
