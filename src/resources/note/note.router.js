@@ -1,5 +1,5 @@
 import { Router } from "express";
-import noteController from "./note.controller.mjs";
+import noteController from "./note.controller.js";
 const noteRouter = Router();
 
 // /api/item
