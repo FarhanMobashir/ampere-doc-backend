@@ -29,7 +29,7 @@ mongoose.connect(process.env.MONGO_URI).then((data) => {
   console.log("mongo connected");
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 8080, () => {
   console.log(
     `App listening on http://${process.env.HOSTNAME}:${process.env.PORT}/api`
   );
