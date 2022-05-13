@@ -31,7 +31,9 @@ export const createOne = (model) => async (req, res) => {
   const createdBy = req.user._id;
   try {
     const doc = await model.create({ ...req.body, createdBy });
-    res.status(201).json({ data: doc });
+    res
+      .status(201)
+      .json({ data: await model.find({ createdBy: req.user._id }) });
   } catch (error) {
     console.error(error);
     res.status(400).end();
@@ -54,7 +56,9 @@ export const updateOne = (model) => async (req, res) => {
     if (!updatedDoc) {
       return res.status(400).end();
     }
-    res.status(200).json({ data: updatedDoc });
+    res
+      .status(200)
+      .json({ data: await model.find({ createdBy: req.user._id }) });
   } catch (err) {
     console.error(err);
     res.status(400).end();
@@ -70,8 +74,13 @@ export const removeOne = (model) => async (req, res) => {
     if (!removed) {
       return res.status(400).end();
     }
-    return res.status(200).json({ data: removed });
-  } catch (err) {}
+    return res
+      .status(200)
+      .json({ data: await model.find({ createdBy: req.user._id }) });
+  } catch (err) {
+    console.error(err);
+    res.status(400).end();
+  }
 };
 
 export const crudControllers = (model) => ({
