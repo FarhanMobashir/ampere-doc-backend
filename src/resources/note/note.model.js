@@ -23,6 +23,9 @@ const noteSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    isArchive: false,
+    isPinned: false,
+    isTrashed: false,
     createdBy: {
       type: mongoose.SchemaTypes.ObjectId,
       ref: "user",
