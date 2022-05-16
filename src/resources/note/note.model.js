@@ -35,6 +35,12 @@ const noteSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    priority: {
+      type: String,
+      enum: ["low", "medium", "high"],
+      default: "low",
+      required: true,
+    },
     createdBy: {
       type: mongoose.SchemaTypes.ObjectId,
       ref: "user",
