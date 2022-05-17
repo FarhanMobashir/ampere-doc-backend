@@ -27,7 +27,7 @@ export const signup = async (req, res) => {
     const token = newToken(user);
     return res.status(201).send({ token });
   } catch (e) {
-    return res.status(500).end();
+    return res.status(401).message({ message: "User already exist" });
   }
 };
 
